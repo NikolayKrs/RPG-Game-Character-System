@@ -13,10 +13,9 @@ public class Main {
         rogue.backstab(mage);
 
         warrior.levelUp();
+        rogue.levelUp();
     }
 }
-
-
 class Character {
     protected String name;
     protected int health;
@@ -31,7 +30,9 @@ class Character {
     }
 
     public void attack(Character c) {
-        System.out.println(this.name + " attacks " + c.name);
+        int damage = 10; 
+        c.takeDamage(damage);
+        System.out.println(this.name + " attacks " + c.name + " for " + damage + " damage. " + c.name + "'s health is now: " + c.health);
     }
 
     public void defend() {
@@ -39,7 +40,9 @@ class Character {
     }
 
     public void castSpell(Character c) {
-        System.out.println(this.name + " casts a spell on " + c.name);
+        int spellDamage = 15; 
+        c.takeDamage(spellDamage);
+        System.out.println(this.name + " casts a spell on " + c.name + " for " + spellDamage + " damage. " + c.name + "'s health is now: " + c.health);
     }
 
     public void levelUp() {
@@ -47,6 +50,10 @@ class Character {
         this.health += 10;
         this.mana += 5;
         System.out.println(this.name + " leveled up to " + this.level);
+    }
+
+    public void takeDamage(int damage) {
+        this.health -= damage;
     }
 }
 
@@ -61,7 +68,9 @@ class Warrior extends Character {
     }
 
     public void powerStrike(Character c) {
-        System.out.println(this.name + " uses Power Strike on " + c.name);
+        int damage = 20; 
+        c.takeDamage(damage);
+        System.out.println(this.name + " uses Power Strike on " + c.name + " for " + damage + " damage. " + c.name + "'s health is now : " + c.health);
     }
 }
 
@@ -76,7 +85,9 @@ class Mage extends Character {
     }
 
     public void fireball(Character c) {
-        System.out.println(this.name + " casts Fireball on " + c.name);
+        int spellDamage = 25; 
+        c.takeDamage(spellDamage);
+        System.out.println(this.name + " casts Fireball on " + c.name + " for " + spellDamage + " damage. " + c.name + "'s health is now: " + c.health);
     }
 }
 
@@ -91,7 +102,8 @@ class Rogue extends Character {
     }
 
     public void backstab(Character c) {
-        System.out.println(this.name + " uses Backstab on " + c.name);
+        int damage = 15; 
+        c.takeDamage(damage);
+        System.out.println(this.name + " uses Backstab on " + c.name + " for " + damage + " damage. " + c.name + "'s health is now: " + c.health);
     }
 }
-
